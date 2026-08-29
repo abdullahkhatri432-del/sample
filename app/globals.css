@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #f7f5f0;
+  --foreground: #1c1c1a;
+}
+
+/* ---- luxury editorial palette ---- */
+@theme {
+  --color-bone: #f7f5f0;
+  --color-bone-2: #efece4;
+  --color-ivory: #fbfaf7;
+  --color-ink: #1c1c1a;
+  --color-ink-soft: #34332f;
+  --color-charcoal: #232220;
+  --color-stone: #6d6a62;
+  --color-stone-light: #a9a49a;
+  --color-gold: #b79a5e;
+  --color-gold-deep: #997c44;
+  --color-gold-hi: #cdb27c;
+  --color-mist: rgba(251, 250, 247, 0.7);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* remove default tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(183, 154, 94, 0.25);
+}
+
+/* thin editorial scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(183, 154, 94, 0.4);
+  border-radius: 999px;
+}
+
+/* utility: glass card */
+.glass {
+  background: rgba(251, 250, 247, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(29, 28, 26, 0.06);
+}
+
+.glass-dark {
+  background: rgba(20, 20, 18, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* gold serif headline helper */
+.headline {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+.gold-text {
+  color: var(--color-gold-deep);
+}
+
+/* subtle inner grid / hairline used on dark sections */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(183, 154, 94, 0.4), transparent);
+}
+
+/* custom range slider for search price */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: linear-gradient(90deg, #b79a5e var(--fill, 50%), #ddd8cc var(--fill, 50%));
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fbfaf7;
+  border: 2px solid #b79a5e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fbfaf7;
+  border: 2px solid #b79a5e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
